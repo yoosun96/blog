@@ -24,4 +24,5 @@ const PostViewerContainer = ({ match }) => {
 
   return <PostViewer post={post} loading={loading} error={error} />;
 };
+
 export default withRouter(PostViewerContainer);
