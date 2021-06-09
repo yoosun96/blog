@@ -17,7 +17,6 @@ const StyledButton = styled(Button)`
     margin-left: 0.5rem;
   }
 `;
-
 const WriteActionButtons = ({ onCancle, onPublish }) => {
   return (
     <WriteActionButtonsBlock>

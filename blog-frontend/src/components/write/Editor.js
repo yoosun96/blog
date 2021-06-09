@@ -27,26 +27,27 @@ const QuillWrapper = styled.div`
     padding: 0;
     min-height: 320px;
     font-size: 1.125rem;
-    line-height: 1.5;
+    line-heignt: 1.5;
   }
+
   .ql-editor.ql-blank::before {
     left: 0px;
   }
 `;
 
 const Editor = ({ title, body, onChangeField }) => {
-  const quillElement = useRef(null); //Quill을 적용할 DivElement를 설정
+  const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
       theme: 'bubble',
-      placeholder: '내용을 작성하세요...',
+      placeholder: '내용을 작성하세요',
       modules: {
-        // 더 많은 옵션
-        // https:///quilljs.com/docs/moduels/toobar/ 참고
+        // 더많은 옵션
+        // https://quilljs.com/docs/modules/toolbar/ 참고
         toolbar: [
-          [{ header: '1' }, { header: 2 }],
+          [{ header: '1' }, { header: '2' }],
           ['bold', 'italic', 'underline', 'strike'],
           [{ list: 'ordered' }, { list: 'bullet' }],
           ['blockquote', 'code-block', 'link', 'image'],

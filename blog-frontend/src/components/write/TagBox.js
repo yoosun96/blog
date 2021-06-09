@@ -32,12 +32,13 @@ const TagForm = styled.form`
     flex: 1;
     min-width: 0;
   }
+
   button {
     cursor: pointer;
     padding-right: 1rem;
     padding-left: 1rem;
     border: none;
-    background: ${palette.gray[9]};
+    background: ${palette.gray[8]};
     color: white;
     font-weight: bold;
     &:hover {
@@ -83,7 +84,7 @@ const TagBox = ({ tags, onChangeTags }) => {
       if (!tag) return; // 공백이라면 추가하지 않음
       if (localTags.includes(tag)) return; // 이미 존재한다면 추가하지 않음
       const nextTags = [...localTags, tag];
-      setLocalTags([...localTags, tag]);
+      setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
     [localTags, onChangeTags],
@@ -91,9 +92,11 @@ const TagBox = ({ tags, onChangeTags }) => {
 
   const onRemove = useCallback(
     (tag) => {
-      setLocalTags(localTags.filter((t) => t !== tag));
+      const nextTags = localTags.filter((t) => t !== tag);
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags],
   );
 
   const onChange = useCallback((e) => {
@@ -113,12 +116,13 @@ const TagBox = ({ tags, onChangeTags }) => {
   useEffect(() => {
     setLocalTags(tags);
   }, [tags]);
+
   return (
     <TagBoxBlock>
       <h4>태그</h4>
       <TagForm onSubmit={onSubmit}>
         <input
-          placeholder="태그를 입력하세요"
+          placeholder="태그를 입력해주세요"
           value={input}
           onChange={onChange}
         />
